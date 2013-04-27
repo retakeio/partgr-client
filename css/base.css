@@ -124,14 +124,16 @@ footer {
 
 
 #image-presenter {
-  position: relative;
+  width: 100%;
+  background: #ddd;
 }
 
-#image-presenter img {
-  width: 35%;
+.selected-image {
+  display:block;
+  width: 20%;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top:50%;
+  left:50%;
 }
 
 .hidden {

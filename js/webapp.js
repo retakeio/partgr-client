@@ -33,11 +33,10 @@ YUI().use('node', 'event', function (Y) {
 
     /* AICI */
                 var img = Y.one('#theImage');
-                img.setStyle('margin-top', '20px');
-                img.setStyle('margin-left', '20px');
-                console.dir(img);
-                console.log(Object.keys(img));
-                img.style['marginTop'] = '20px';
+                var height = parseInt(img.getStyle('height'), 10);
+                var width = parseInt(img.getStyle('width'), 10);
+                img.setStyle('margin-top', - height / 2);
+                img.setStyle('margin-left', - width / 2);
 
     // Geolocation
     var geolocationDisplay = document.querySelector("#geolocation-display");
