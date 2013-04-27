@@ -26,10 +26,9 @@ YUI().use('node', 'event', function (Y) {
     }
 
     // Geolocation
-    var geolocation = document.querySelector("#geolocation"),
-        geolocationDisplay = document.querySelector("#geolocation-display");
-    if (geolocation && geolocationDisplay) {
-        geolocation.onclick = function () {
+    var geolocationDisplay = document.querySelector("#geolocation-display");
+    if (geolocationDisplay) {
+        (function () {
             navigator.geolocation.getCurrentPosition(function (position) {
                 geolocationDisplay.innerHTML = "<strong>Latitude:</strong> " + position.coords.latitude + ", <strong>Longitude:</strong> " + position.coords.longitude;
                 geolocationDisplay.style.display = "block";
@@ -38,7 +37,7 @@ YUI().use('node', 'event', function (Y) {
                 geolocationDisplay.innerHTML = "Failed to get your current location";
                 geolocationDisplay.style.display = "block";
             });
-        };
+        })();
     }
 
     // deviceStorage, pictures
