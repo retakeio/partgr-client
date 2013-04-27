@@ -147,19 +147,21 @@
             if (acceptedTypes[files[0].type] === true) {
                 var reader = new FileReader();
                 reader.onload = function (event) {
-                    var image = new Image();
-                    image.setAttribute('id', 'theImage');
-                    image.src = event.target.result;
-                    image.width = 500;
-                    document.body.appendChild(image);
-
-                    // make the img draggable
-                    var dd = new Y.DD.Drag({
-                        node: '#theImage'
-                    });
-
-                    //img = image;
-                    //img.addEventListener('dragstart', function (e) { e.preventDefault(); return false; });
+                    var image = document.getElementById('theImage');
+                    if (!image) {
+                        var image = new Image();
+                        image.setAttribute('id', 'theImage');
+                        image.src = event.target.result;
+                        image.width = 500;
+                        document.body.appendChild(image);
+                        // make the img draggable
+                        var dd = new Y.DD.Drag({
+                            node: '#theImage'
+                        });
+                    } else {
+                        image.src = event.target.result;
+                        image.width = 500;
+                    }
                 };
 
                 reader.readAsDataURL(files[0]);
