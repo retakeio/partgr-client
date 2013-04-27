@@ -44,6 +44,23 @@
                 // fallback when there is no activity
                 pickImage.onclick = function () {
                     var input = Y.one('#image-input');
+                    input.on('change', function (event) {
+                        var selectedFile = document.getElementById('image-input').files[0];
+                        var reader = new FileReader();
+
+                        var img = document.createElement("img");
+                        img.id = 'theImage';
+
+                        var imagePresenter = document.querySelector("#image-presenter");
+
+                        reader.onload = function(event) {
+                            img.src = event.target.result;
+                            imagePresenter.appendChild(img);
+                            imagePresenter.style.display = "block";
+                        };
+
+                        reader.readAsDataURL(selectedFile);
+                    });
                     input.simulate('click');
                 };
             }
