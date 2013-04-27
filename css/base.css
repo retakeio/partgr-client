@@ -140,3 +140,9 @@ footer {
 .transition {
   position: absolute;
 }
+
+#geolocation-display {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}

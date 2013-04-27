@@ -109,7 +109,7 @@
                     codeLatLng(position);
                 },
                 function (position) {
-                    geolocationDisplay.innerHTML = "Failed to get your current location";
+                    geolocationDisplay.innerHTML = "failed to get your current location";
                     geolocationDisplay.style.display = "block";
                 });
             })();
