@@ -5,39 +5,42 @@
         // pick
         var pickImage = document.querySelector("#pick-image");
         if (pickImage) {
+            if (typeof MozActivity != 'undefined') {
             pickImage.onclick = function () {
                 var pick = new MozActivity({
                     name: "pick",
                     data: {
                         type: ["image/png", "image/jpg", "image/jpeg"]
-                 }
-        });
+                     }
+                });
 
-        pick.onsuccess = function () { 
-                var img = document.createElement("img");
-            img.id = 'theImage';
-            img.src = window.URL.createObjectURL(this.result.blob);
-            var imagePresenter = document.querySelector("#image-presenter");
-            imagePresenter.appendChild(img);
-            imagePresenter.style.display = "block";
+                pick.onsuccess = function () { 
+                        var img = document.createElement("img");
+                    img.id = 'theImage';
+                    img.src = window.URL.createObjectURL(this.result.blob);
+                    var imagePresenter = document.querySelector("#image-presenter");
+                    imagePresenter.appendChild(img);
+                    imagePresenter.style.display = "block";
 
-            // make the img draggable
-            var dd = new Y.DD.Drag({
-                node: '#theImage'
-            });
+                    // make the img draggable
+                    var dd = new Y.DD.Drag({node: '#theImage'});
 
-            tipText = Y.one('#tip');
-            tipText.addClass('hidden');
+                    tipText = Y.one('#tip');
+                    tipText.addClass('hidden');
 
-            pick = Y.one('#pick-image');
-            pick.addClass('hidden');
-        };
+                    pick = Y.one('#pick-image');
+                    pick.addClass('hidden');
+                };
 
-        pick.onerror = function () { 
-                alert("Can't view the image!");
-        };
-    }
-}
+                pick.onerror = function () { 
+                    alert("Can't view the image!");
+                };
+            }
+            } else {
+                // fallback when there is no activity
+                console.log('No MozActivity detected');
+            }
+        }
 
 
 // proximity
