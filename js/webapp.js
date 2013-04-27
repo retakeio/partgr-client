@@ -1,5 +1,6 @@
 (function () {
 YUI().use('node', 'event', 'dd-drag', function (Y) {
+    var _proximity_timestamp;
     // pick
     var pickImage = document.querySelector("#pick-image");
     if (pickImage) {
@@ -26,6 +27,9 @@ YUI().use('node', 'event', 'dd-drag', function (Y) {
 
                 tipText = Y.one('#tip');
                 tipText.addClass('hidden');
+
+                pick = Y.one('#pick-image');
+                pick.addClass('hidden');
             };
 
             pick.onerror = function () { 
@@ -33,6 +37,18 @@ YUI().use('node', 'event', 'dd-drag', function (Y) {
             };
         }
     }
+
+
+    // proximity
+    window.addEventListener('userproximity', function(event) {
+        if (event.near) {
+            // let's power off the screen
+            console.log("near");
+        } else {
+            // Otherwise, let's power on the screen
+            console.log("off");
+        }
+    });
 
     // Geolocation
     var geolocationDisplay = document.querySelector("#geolocation-display");
