@@ -1,5 +1,14 @@
 (function () {
-    YUI().use('node', 'event', 'node-event-simulate', 'dd-drag', function (Y) {
+    YUI().use('node', 'event', 'node-event-simulate', 'dd-drag',
+              'transition', function (Y) {
+
+        /* Nu uita de position absolute */
+        Y.one('#receivedImage').transition({
+            duration: 1.5, // seconds
+            easing: 'ease-out',
+            top: '500px',
+        });
+
 
         var _proximityTimestamp = -1;
         // pick
