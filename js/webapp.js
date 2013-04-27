@@ -1,6 +1,4 @@
-(function () {
     YUI().use("client", function (Y) {
-
 
         var _proximityTimestamp = -1;
         var _dragStart = {
@@ -66,7 +64,6 @@
                 }
             }
         });
-
         // Geolocation
         var geolocationDisplay = document.querySelector("#geolocation-display");
 
@@ -204,4 +201,3 @@
 
 
     });
-})();

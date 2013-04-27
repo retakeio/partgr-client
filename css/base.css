@@ -137,3 +137,6 @@ footer {
   display: none;
 }
 
+.transition {
+  position: absolute;
+}
