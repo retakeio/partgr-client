@@ -13,10 +13,16 @@ YUI().use('node', 'event', function (Y) {
 
             pick.onsuccess = function () { 
                 var img = document.createElement("img");
+                img.id = 'theImage';
                 img.src = window.URL.createObjectURL(this.result.blob);
                 var imagePresenter = document.querySelector("#image-presenter");
                 imagePresenter.appendChild(img);
                 imagePresenter.style.display = "block";
+
+                // center img
+
+                tipText = Y.one('#tip');
+                tipText.addClass('hidden');
             };
 
             pick.onerror = function () { 
@@ -24,6 +30,14 @@ YUI().use('node', 'event', function (Y) {
             };
         }
     }
+
+    /* AICI */
+                var img = Y.one('#theImage');
+                img.setStyle('margin-top', '20px');
+                img.setStyle('margin-left', '20px');
+                console.dir(img);
+                console.log(Object.keys(img));
+                img.style['marginTop'] = '20px';
 
     // Geolocation
     var geolocationDisplay = document.querySelector("#geolocation-display");

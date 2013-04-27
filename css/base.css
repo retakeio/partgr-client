@@ -90,11 +90,14 @@ header.show-install h1 {
     max-width: 100%;
 }
 
-#image-presenter,
 #connection-display,
 #battery-display {
     display: none;
     margin-bottom: 10px;
+}
+
+#image-presenter {
+  margin-bottom: 10px;
 }
 
 #main button {
@@ -120,8 +123,15 @@ footer {
 }
 
 
+#image-presenter {
+  position: relative;
+}
+
 #image-presenter img {
   width: 35%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 .hidden {
