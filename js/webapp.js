@@ -1,5 +1,5 @@
 (function () {
-    YUI().use('node', 'event', 'dd-drag', function (Y) {
+    YUI().use('node', 'event', 'node-event-simulate', 'dd-drag', function (Y) {
 
         var _proximityTimestamp = -1;
         // pick
@@ -38,7 +38,10 @@
                 }
             } else {
                 // fallback when there is no activity
-                console.log('No MozActivity detected');
+                pickImage.onclick = function () {
+                    var input = Y.one('#image-input');
+                    input.simulate('click');
+                };
             }
         }
 
