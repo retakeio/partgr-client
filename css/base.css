@@ -122,12 +122,11 @@ footer {
     background-image: url("../images/toolbars/icons/update.png");
 }
 
-
 #image-presenter {
   width: 100%;
 }
 
-.selected-image {
+#image-presenter img {
   display: block;
   width: 35%;
   margin:0 auto;

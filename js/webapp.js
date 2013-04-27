@@ -1,5 +1,5 @@
 (function () {
-YUI().use('node', 'event', function (Y) {
+YUI().use('node', 'event', 'dd-drag', function (Y) {
     // pick
     var pickImage = document.querySelector("#pick-image");
     if (pickImage) {
@@ -19,7 +19,10 @@ YUI().use('node', 'event', function (Y) {
                 imagePresenter.appendChild(img);
                 imagePresenter.style.display = "block";
 
-                // center img
+                // make the img draggable
+                var dd = new Y.DD.Drag({
+                    node: '#theImage'
+                });
 
                 tipText = Y.one('#tip');
                 tipText.addClass('hidden');
@@ -30,13 +33,6 @@ YUI().use('node', 'event', function (Y) {
             };
         }
     }
-
-    /* AICI */
-                var img = Y.one('#theImage');
-                var height = parseInt(img.getStyle('height'), 10);
-                var width = parseInt(img.getStyle('width'), 10);
-                img.setStyle('margin-top', - height / 2);
-                img.setStyle('margin-left', - width / 2);
 
     // Geolocation
     var geolocationDisplay = document.querySelector("#geolocation-display");
