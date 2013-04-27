@@ -23,6 +23,7 @@ html, body {
   margin: 0;
   font: normal 10px "mozTT", sans-serif;
   background: #fff;
+  overflow: hidden;
 }
 
 body {

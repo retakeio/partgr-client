@@ -2,6 +2,10 @@
     YUI().use('node', 'event', 'dd-drag', function (Y) {
 
         var _proximityTimestamp = -1;
+        var _dragStart = {
+            x: 0,
+            y: 0
+        };
         // pick
         var pickImage = document.querySelector("#pick-image");
         if (pickImage) {
@@ -56,6 +60,8 @@ window.addEventListener('userproximity', function(event) {
 
 // Geolocation
 var geolocationDisplay = document.querySelector("#geolocation-display");
+
+
 
 function codeLatLng(position) {
     var geocoder = new google.maps.Geocoder();
@@ -121,6 +127,28 @@ if (deviceStoragePictures && deviceStoragePicturesDisplay) {
     };
 }
 
+
+    function dragStart (e) {
+        _dragStart.x = e.pageX;
+        _dragStart.y = e.pageY;
+    }
+
+    function dragImage (e) {
+        var image = Y.one("#theImage");
+        var pos = image.getXY();
+        var width = image.get('offsetWidth');
+        var height = image.get('offsetHeight');
+
+        console.log(pos[0] + width);
+
+        if (pos[0] + width > document.width) {
+            console.log('overflow right');
+        }
+        if (pos[0] < 0) {
+            console.log('overflow left');
+        }
+    }
+
     // Drag and drop
     var doc = document.documentElement;
     var acceptedTypes = {
@@ -144,6 +172,7 @@ if (deviceStoragePictures && deviceStoragePicturesDisplay) {
                 var image = new Image();
                 image.setAttribute('id', 'theImage');
                 image.src = event.target.result;
+                console.log(image.width);
                 image.width = 500;
                 document.body.appendChild(image);
 
@@ -152,8 +181,9 @@ if (deviceStoragePictures && deviceStoragePicturesDisplay) {
                     node: '#theImage'
                 });
 
-                //img = image;
-                //img.addEventListener('dragstart', function (e) { e.preventDefault(); return false; });
+                Y.DD.DDM.on('drag:drag', dragImage);
+                Y.DD.DDM.on('drag:start', dragStart);
+
             };
 
             reader.readAsDataURL(files[0]);
