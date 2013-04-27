@@ -57,6 +57,17 @@
                             img.src = event.target.result;
                             imagePresenter.appendChild(img);
                             imagePresenter.style.display = "block";
+
+                            // make the img draggable
+                            var dd = new Y.DD.Drag({node: '#theImage'});
+                            Y.DD.DDM.on('drag:drag', dragImage);
+                            Y.DD.DDM.on('drag:start', dragStart);
+
+                            tipText = Y.one('#tip');
+                            tipText.addClass('hidden');
+
+                            pick = Y.one('#pick-image');
+                            pick.addClass('hidden');
                         };
 
                         reader.readAsDataURL(selectedFile);
