@@ -29,11 +29,7 @@
                         // make the img draggable
                         var dd = new Y.DD.Drag({node: '#theImage'});
 
-                        tipText = Y.one('#tip');
-                        tipText.addClass('hidden');
-
-                        pick = Y.one('#pick-image');
-                        pick.addClass('hidden');
+                        Y.Client.disableUpload();
                     };
 
                     pick.onerror = function () { 
@@ -63,11 +59,7 @@
                             Y.DD.DDM.on('drag:drag', dragImage);
                             Y.DD.DDM.on('drag:start', dragStart);
 
-                            tipText = Y.one('#tip');
-                            tipText.addClass('hidden');
-
-                            pick = Y.one('#pick-image');
-                            pick.addClass('hidden');
+                            Y.Client.disableUpload();
                         };
 
                         reader.readAsDataURL(selectedFile);

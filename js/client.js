@@ -21,6 +21,23 @@ Y.Client.sendImage = function (direction) {
     });
 };
 
+    Y.Client.disableUpload = function () {
+        // called when a picture occupies the space
+        tipText = Y.one('#tip');
+        tipText.addClass('hidden');
+
+        pick = Y.one('#pick-image');
+        pick.addClass('hidden');
+    };
+
+    Y.Client.enableUpload = function () {
+        // called when the space is free again
+        tipText = Y.one('#tip');
+        tipText.removeClass('hidden');
+
+        pick = Y.one('#pick-image');
+        tipText.removeClass('hidden');
+    };
 
 socket.on('connected', function () {
     console.log('connected');
