@@ -119,3 +119,12 @@ footer {
     background-image: url("../images/toolbars/icons/update.png");
 }
 
+
+#image-presenter img {
+  width: 35%;
+}
+
+.hidden {
+  display: none;
+}
+

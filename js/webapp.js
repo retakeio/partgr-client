@@ -1,4 +1,5 @@
 (function () {
+YUI().use('node', 'event', function (Y) {
     // pick
     var pickImage = document.querySelector("#pick-image");
     if (pickImage) {
@@ -72,4 +73,5 @@
             };
         };
     }
+});
 })();
