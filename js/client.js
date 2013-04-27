@@ -36,7 +36,7 @@ Y.Client.sendImage = function (direction) {
         tipText.removeClass('hidden');
 
         pick = Y.one('#pick-image');
-        tipText.removeClass('hidden');
+        pick.removeClass('hidden');
     };
 
 socket.on('connected', function () {
@@ -71,6 +71,9 @@ function handleMsg (msg) {
 
 function sendMsg (msg) {
     socket.emit('msg', msg);
+    // We are done, next image please
+    console.log('sunt aici');
+    Y.Client.enableUpload();
 }
 
 }, "1.0.0", {requires: ['node', 'event', 'node-event-simulate', 'dd-drag','transition']});
