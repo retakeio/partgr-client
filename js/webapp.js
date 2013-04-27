@@ -1,6 +1,6 @@
 (function () {
 YUI().use('node', 'event', 'dd-drag', function (Y) {
-    var _proximity_timestamp;
+    var _proximityTimestamp = -1;
     // pick
     var pickImage = document.querySelector("#pick-image");
     if (pickImage) {
@@ -42,11 +42,14 @@ YUI().use('node', 'event', 'dd-drag', function (Y) {
     // proximity
     window.addEventListener('userproximity', function(event) {
         if (event.near) {
-            // let's power off the screen
-            console.log("near");
+            _proximityTimestamp = new Date().getTime();
         } else {
-            // Otherwise, let's power on the screen
-            console.log("off");
+            if (_proximityTimestamp != -1) {
+                var now = new Date().getTime();
+                if (now - _proximityTimestamp >= 100)
+                    alert("sending");
+                _proximityTimestamp = -1;
+            }
         }
     });
 
