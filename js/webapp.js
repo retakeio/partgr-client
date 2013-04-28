@@ -203,6 +203,7 @@
         doc.ondragover = function () { this.className = 'hover'; return false; };
         doc.ondragend = function () { this.className = ''; return false; };
         doc.ondrop = function (event) {
+            console.log('ondrop');
             event.preventDefault && event.preventDefault();
             this.className = '';
 
@@ -211,9 +212,10 @@
             console.log(files);
 
             if (acceptedTypes[files[0].type] === true) {
+                console.log('accepted');
                 var reader = new FileReader();
                 reader.onload = function (event) {
-                    Y.Client.loadImage(event.target.result);
+                    Y.Client.landImage(event.target.result);
                     Y.DD.DDM.on('drag:drag', dragImage);
                     Y.DD.DDM.on('drag:start', dragStart);
                 };
@@ -224,14 +226,14 @@
         };
 
         // buttons on footer
-        var delbut = Y.one('#delete');
-        delbut.on('click', function (e) {
-            var img = Y.one('#theImage');
-            if (img) {
-                img.remove();
-            }
-            Y.Client.enableUpload();
-        });
+        // var delbut = Y.one('#delete');
+        // delbut.on('click', function (e) {
+        //     var img = Y.one('#theImage');
+        //     if (img) {
+        //         img.remove();
+        //     }
+        //     Y.Client.enableUpload();
+        // });
 
         if (DEBUG) {
             Y.one('#proxibtn').removeClass('hidden');
