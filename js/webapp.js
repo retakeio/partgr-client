@@ -243,6 +243,16 @@
              Y.one('footer').removeClass('visible');
          });
 
+         var downloadButton = Y.one('#download');
+         downloadButton.on('click', function(e) {
+             var img = Y.one('#theImage');
+             if (img) {
+                var aDownload = Y.Node.create('<a download="image"  href="'+ msg.image +'">');
+                aDownload.simulate('click');
+             }
+             Y.one('footer').removeClass('visible');
+         });
+
         if (DEBUG) {
             Y.one('#proxibtn').removeClass('hidden');
         }
