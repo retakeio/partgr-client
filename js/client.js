@@ -48,13 +48,16 @@ Y.Client.sendImage = function (direction) {
         Y.Client.sendImage({
             direction: 'spoof'
         });
-        Y.one('#theImage').transition({
-            duration: 1.5, // seconds
-            easing: 'ease-out',
-            opacity: '0'
-        }, function () {
-            this.remove();
-        });
+        var img = Y.one('#theImage');
+        if (img) {
+            img.transition({
+                duration: 1.5, // seconds
+                easing: 'ease-out',
+                opacity: '0'
+            }, function () {
+                this.remove();
+            });
+        }
     };
 
     Y.Client.landImage = function (data) {
