@@ -45,6 +45,10 @@ Y.Client.sendImage = function (direction) {
     };
 
     Y.Client.teleportImage = function () {
+        if (document.querySelector('.transition')) {
+            console.log('Wont teleport received images');
+            return false;
+        }
         Y.Client.sendImage({
             direction: 'spoof'
         });
@@ -58,6 +62,7 @@ Y.Client.sendImage = function (direction) {
                 this.remove();
             });
         }
+        return true;
     };
 
     Y.Client.landImage = function (data) {
