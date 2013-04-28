@@ -233,14 +233,15 @@
         };
 
         // buttons on footer
-        // var delbut = Y.one('#delete');
-        // delbut.on('click', function (e) {
-        //     var img = Y.one('#theImage');
-        //     if (img) {
-        //         img.remove();
-        //     }
-        //     Y.Client.enableUpload();
-        // });
+         var delbut = Y.one('#delete');
+         delbut.on('click', function (e) {
+             var img = Y.one('#theImage');
+             if (img) {
+                 img.remove();
+             }
+             Y.Client.enableUpload();
+             Y.one('footer').removeClass('visible');
+         });
 
         if (DEBUG) {
             Y.one('#proxibtn').removeClass('hidden');
