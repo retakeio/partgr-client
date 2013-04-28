@@ -70,7 +70,7 @@ Y.Client.sendImage = function (direction) {
         var img = document.createElement("img");
         img.id = 'theImage';
         img.src = data;
-        img.width = 500;
+        //img.width = 500;
         var imagePresenter = document.querySelector("#image-presenter");
         imagePresenter.appendChild(img);
         imagePresenter.style.display = "block";
