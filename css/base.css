@@ -22,7 +22,6 @@ html, body {
   padding: 0;
   margin: 0;
   font: normal 10px "mozTT", sans-serif;
-  background: #888;
   overflow: hidden;
 }
 
@@ -150,7 +149,7 @@ footer.visible {
 
 #image-presenter img {
   display: block;
-  width: 50%;
+  width: 35%;
   margin:0 auto;
 }
 
