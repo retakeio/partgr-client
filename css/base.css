@@ -197,9 +197,14 @@ footer.visible {
     width:20px;
     height:20px;
     background: #ddd;
-    right:1%;
+    right:2%;
     top:-7px;
   }
+
+#pick-image {
+  margin-right: 5px;
+}
+
 
 .hidden {
   display: none;
