@@ -11,6 +11,10 @@ Y.Client.sendImage = function (direction) {
     var ctx = c.getContext("2d");
     var data;
     var img = document.getElementById('theImage');
+    if (!img) {
+        console.log('There is no image to send');
+        return false;
+    }
     c.width = img.width;
     c.height = img.height;
     ctx.drawImage(img, 0, 0, c.width, c.height);
@@ -19,6 +23,7 @@ Y.Client.sendImage = function (direction) {
         image: data,
         direction: direction
     });
+    return true;
 };
 
     Y.Client.disableUpload = function () {

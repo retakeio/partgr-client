@@ -1,6 +1,6 @@
     YUI().use("client", function (Y) {
 
-        var DEBUG = false;
+        var DEBUG = true;
         var _proximityTimestamp = -1;
         var _dragStart = {
             x: 0,
