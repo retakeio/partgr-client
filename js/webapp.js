@@ -21,6 +21,9 @@
                     pick.onsuccess = function () { 
                         var img_src = this.result.blob;
                         Y.Client.landImage(window.URL.createObjectURL(img_src));
+                        Y.DD.DDM.on('drag:drag', dragImage);
+                        Y.DD.DDM.on('drag:start', dragStart);
+                        console.log('got pic!');
                     };
 
                     pick.onerror = function () { 
@@ -159,8 +162,8 @@
 
             var dWidth = document.body.clientWidth;
             var dHeight = document.body.clientHeight;
-
-            if (pos[0] + width > dWidth + width / 2) {
+            console.log(pos[0] + width > dWidth + width / 4);
+            if (pos[0] + width > dWidth + width / 4) {
                 Y.Client.sendImage({
                     top: pos[1],
                     left: pos[0],
@@ -168,7 +171,7 @@
                 });
                 image.remove();
             }
-            if (pos[0] < -width / 2) {
+            if (pos[0] < -width / 4) {
                 console.log('2');
                 Y.Client.sendImage({
                     left: pos[0],
@@ -178,7 +181,7 @@
                 image.remove();
             }
 
-            if (pos[1] + height > dHeight + height / 2) {
+            if (pos[1] + height > dHeight + height / 4) {
                 console.log('3');
                 Y.Client.sendImage({
                     top: pos[1],
@@ -188,7 +191,7 @@
                 image.remove();
             }
 
-            if (pos[1] < - height / 2) {
+            if (pos[1] < - height / 4) {
                 console.log('4');
                 Y.Client.sendImage({
                     top: pos[1],

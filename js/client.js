@@ -87,7 +87,8 @@ Y.Client.sendImage = function (direction) {
 
 socket.on('connected', function () {
     console.log('connected');
-    socket.emit('set nickname', 'andrei');
+    socket.emit('set nickname', 'andrei' + Date.now().toString().slice(5,100));
+    socket.emit('uastring', navigator.userAgent);
     navigator.geolocation.getCurrentPosition(function (pos) {
         socket.emit('set location', {
             pos : {
