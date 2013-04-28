@@ -103,7 +103,7 @@ function appendImage(img, direction) {
                 duration: 1.5, // seconds
                 easing: 'ease-out',
                 top: direction.top + 'px',
-                left: '-450px'
+                left: parseInt(img.getStyle('width'), 10) / 2 + 'px'
             });
         }
         if (direction.direction == 'left') {
@@ -113,7 +113,7 @@ function appendImage(img, direction) {
                 duration: 1.5, // seconds
                 easing: 'ease-out',
                 top: direction.top + 'px',
-                right: '-450px'
+                right: parseInt(img.getStyle('width'), 10) / 2 + 'px'
             });
         }
         if (direction.direction == 'bottom') {
@@ -125,7 +125,7 @@ function appendImage(img, direction) {
             img.transition({
                 duration: 1.5, // seconds
                 easing: 'ease-out',
-                top: '-100px'
+                top: parseInt(img.getStyle('height'), 10) / 2 + 'px'
             });
         }
         if (direction.direction == 'top') {
@@ -137,7 +137,7 @@ function appendImage(img, direction) {
             img.transition({
                 duration: 1.5, // seconds
                 easing: 'ease-out',
-                bottom: '-100px'
+                bottom: parseInt(img.getStyle('height'), 10) / 2 + 'px'
             });
         }
         if (direction.direction == 'spoof') {
