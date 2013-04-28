@@ -163,6 +163,9 @@ function handleMsg (msg) {
     }
 
     var img = Y.Node.create('<img id="theImage" class="transition" src="'+ msg.image +'">');
+    img.on('tap', function (event) {
+        document.querySelector('footer').classList.add('visible');
+    });
     appendImage(img, msg.direction);
 }
 
