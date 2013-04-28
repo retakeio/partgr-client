@@ -149,6 +149,10 @@ function appendImage(img, direction) {
                 opacity: 1
             });
         }
+        pick = Y.one('#pick-image');
+        pick.addClass('hidden');
+        tipText = Y.one('#tip');
+        tipText.addClass('hidden');
 
     var dd = new Y.DD.Drag({
         node: img
