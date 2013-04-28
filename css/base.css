@@ -163,19 +163,25 @@ footer.visible {
 }
 
   .online-users img {
+    margin:2px;
     width: 20px;
     background: none;
     border:none !important;
-    margin:2px;
     border-radius: 50%;
+    -webkit-transition-duration:.2s;
+    -moz-transition-duration:.2s;
+    transition-duration:.2s;
   }
 
-    .online-users img:hover:after {
-      content: attr(data-lat + ' ' data-lng);
-      display:inline-block;
-      width:50px;
-      color:#fff;
-    }
+  .online-users img:hover {
+    -webkit-transform:scale(2);
+    -moz-transform:scale(2);
+    transform:scale(2);
+
+    -webkit-transition-duration:.2s;
+    -moz-transition-duration:.2s;
+    transition-duration:.2s;
+  }
 
   .notification--arow {
     position: relative;
@@ -212,9 +218,8 @@ footer.visible {
 .online-users {
     position: fixed;
     bottom:15px;
+    height:30px;
     left:10px;
-    width: 200px;
-    overflow-x:scroll;
 }
 
 #main img {

@@ -122,8 +122,7 @@ function displayUserlist (userlist) {
 
         var img = document.createElement('img');
         if (user.location) {
-            img.dataset.lat = user.location.lat;
-            img.dataset.lng = user.location.lng;
+            img.setAttribute('title',  user.location.lat + ' ' + user.location.lng);
         }
 
         if (user.family.match(/Mobile/g)) {
