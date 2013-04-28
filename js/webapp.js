@@ -163,11 +163,17 @@
             var height = image.get('offsetHeight');
 
             if (pos[0] + width > document.width + 100 && !_sent) {
-                Y.Client.sendImage('right');
+                Y.Client.sendImage({
+                    top: pos[1],
+                    direction: 'right'
+                });
                 _sent = true;
             }
             if (pos[0] < -100 && !_sent) {
-                Y.Client.sendImage('left');
+                Y.Client.sendImage({
+                    top: pos[1],
+                    direction: 'left'
+                });
                 _sent = true;
             }
         }

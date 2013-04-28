@@ -55,13 +55,30 @@ socket.on('connected', function () {
 socket.on('newmsg', handleMsg);
 
 function appendImage(img, direction) {
-    Y.one('body').append(img);
-    img.transition({
-        duration: 1.5, // seconds
-        easing: 'ease-out',
-        top: '0px',
-        left: '100px'
+    if (direction.direction == 'right') {
+        img.setStyle('left', '-1000px');
+        Y.one('body').append(img);
+        img.transition({
+            duration: 1.5, // seconds
+            easing: 'ease-out',
+            top: direction.top + 'px',
+            left: '-450px'
+        });
+    } else {
+        img.setStyle('right', '-1000px');
+        Y.one('body').append(img);
+        img.transition({
+            duration: 1.5, // seconds
+            easing: 'ease-out',
+            top: direction.top + 'px',
+            right: '-450px'
+        });
+    }
+
+    var dd = new Y.DD.Drag({
+        node: img
     });
+
 }
 
 function handleMsg (msg) {
