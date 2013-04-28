@@ -149,6 +149,10 @@
                 console.log('No image in drag, quiting');
                 return false;
             }
+            if (document.querySelector('.transition')) {
+                console.log('Only received images, quiting')
+                return false;
+            }
             var pos = image.getXY();
             var width = image.get('offsetWidth');
             var height = image.get('offsetHeight');
