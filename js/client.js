@@ -113,14 +113,18 @@ function displayUserlist (userlist) {
     var userlistEl = document.querySelector('#useragents');
     userlistEl.innerHTML = '';
     for (var i in userlist) {
+
         var user = {};
         user.family = userlist[i].family;
-        console.log(userlist[i]);
         user.location = userlist[i].location;
 
+        if (!user.family) continue;
+
         var img = document.createElement('img');
-        img.dataset.lat = user.location.lat;
-        img.dataset.lng = user.location.lng;
+        if (user.location) {
+            img.dataset.lat = user.location.lat;
+            img.dataset.lng = user.location.lng;
+        }
 
         if (user.family.match(/Mobile/g)) {
             img.src = 'images/b2g.png';
@@ -133,7 +137,6 @@ function displayUserlist (userlist) {
         }
 
         userlistEl.appendChild(img);
-
 
     }
 }
