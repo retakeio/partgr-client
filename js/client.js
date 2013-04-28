@@ -157,8 +157,10 @@ function appendImage(img, direction) {
 }
 
 function handleMsg (msg) {
-    if (document.querySelector('.transition'))
+    if (document.querySelector('.transition')) {
+        console.log('Ignoring incoming image, since something on screen')
         return ;
+    }
 
     var img = Y.Node.create('<img id="theImage" class="transition" src="'+ msg.image +'">');
     appendImage(img, msg.direction);
