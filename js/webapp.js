@@ -69,30 +69,29 @@
             }
         }
 
+        var proxibuton = Y.one('#proxibtn');
+        proxibuton.on('click', function (e) {
+            Y.Client.teleportImage();
+        });
 
 
         // proximity
-        window.addEventListener('userproximity', function(event) {
+        var onProxyListener = function(event) {
             if (event.near) {
                 _proximityTimestamp = new Date().getTime();
             } else {
                 if (_proximityTimestamp != -1) {
                     var now = new Date().getTime();
                     if (now - _proximityTimestamp >= 100) {
-                        sendImage('spoof');
-                        Y.one('#theImage').transition({
-                            duration: 1.5, // seconds
-                            easing: 'ease-out',
-                            opacity: '0'
-                        }, function () {
-                            this.remove();
-                        });
-
+                        Y.Client.teleportImage();
                     }
                     _proximityTimestamp = -1;
                 }
             }
-        });
+        };
+        // for later
+        window.addEventListener('userproximity', onProxyListener);
+
         // Geolocation
         var geolocationDisplay = document.querySelector("#geolocation-display");
 

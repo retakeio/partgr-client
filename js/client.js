@@ -39,6 +39,17 @@ Y.Client.sendImage = function (direction) {
         pick.removeClass('hidden');
     };
 
+    Y.Client.teleportImage = function () {
+        Y.Client.sendImage('spoof');
+        Y.one('#theImage').transition({
+            duration: 1.5, // seconds
+            easing: 'ease-out',
+            opacity: '0'
+        }, function () {
+            this.remove();
+        });
+    };
+
 socket.on('connected', function () {
     console.log('connected');
     socket.emit('set nickname', 'andrei');
