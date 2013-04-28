@@ -120,9 +120,15 @@ footer {
     -webkit-transform:translateY(35px);
     -moz-transform:translateY(35px);
     transform:translateY(35px);
+    -webkit-transition-duration:.7s;
+    -moz-transition-duration:.7s;
+    transition-duration:.7s;
 }
 
 footer.visible {
+  -webkit-transition-duration:.7s;
+  -moz-transition-duration:.7s;
+  transition-duration:.7s;
   -webkit-transform:translateY(0);
   -moz-transform:translateY(0);
   transform:translateY(0);
