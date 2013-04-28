@@ -101,6 +101,16 @@ socket.on('connected', function () {
 
 socket.on('newmsg', handleMsg);
 
+socket.on('userlist', displayUserlist);
+
+function displayUserlist (userlist) {
+    userlist.forEach(function (user) {
+
+        console.log(user);
+
+    });
+}
+
 function appendImage(img, direction) {
         if (direction.direction == 'right') {
             img.setStyle('left', '-1000px');

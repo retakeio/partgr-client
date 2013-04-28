@@ -154,6 +154,29 @@ footer.visible {
   margin:0 auto;
 }
 
+.notification {
+  background:#ddd;
+  padding:.5em;
+  font-size:2rem;
+  border-radius:10px;
+  position: relative;
+  text-align: center;
+}
+
+  .notification:after {
+    content: '';
+    display:block;
+    position: absolute;
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    transform:rotate(45deg);
+    width:20px;
+    height:20px;
+    background: #ddd;
+    right:5%;
+    top:-7px;
+  }
+
 .hidden {
   display: none;
 }
