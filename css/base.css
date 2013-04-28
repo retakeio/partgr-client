@@ -164,6 +164,10 @@ footer.visible {
 
 #geolocation-display {
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 30px;
+    right: 10px;
+}
+
+#main img {
+    border: 1px solid #fff;
 }
