@@ -52,6 +52,26 @@ Y.Client.sendImage = function (direction) {
         });
     };
 
+    Y.Client.landImage = function (data) {
+        // Make a new image appear; if there is one; fail
+        if (document.getElementById('theImage')) {
+            console.log('There is already an image on screen');
+            return false;
+        }
+
+        var img = document.createElement("img");
+        img.id = 'theImage';
+        img.src = data;
+        img.width = 500;
+        var imagePresenter = document.querySelector("#image-presenter");
+        imagePresenter.appendChild(img);
+        imagePresenter.style.display = "block";
+        var dd = new Y.DD.Drag({node: '#theImage'});
+
+        Y.Client.disableUpload();
+        return true;
+    };
+
 socket.on('connected', function () {
     console.log('connected');
     socket.emit('set nickname', 'andrei');

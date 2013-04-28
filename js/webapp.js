@@ -1,6 +1,6 @@
     YUI().use("client", function (Y) {
 
-        var DEBUG = true;
+        var DEBUG = false;
         var _proximityTimestamp = -1;
         var _dragStart = {
             x: 0,
@@ -19,17 +19,8 @@
                     });
 
                     pick.onsuccess = function () { 
-                        var img = document.createElement("img");
-                        img.id = 'theImage';
-                        img.src = window.URL.createObjectURL(this.result.blob);
-                        var imagePresenter = document.querySelector("#image-presenter");
-                        imagePresenter.appendChild(img);
-                        imagePresenter.style.display = "block";
-
-                        // make the img draggable
-                        var dd = new Y.DD.Drag({node: '#theImage'});
-
-                        Y.Client.disableUpload();
+                        var img_src = this.result.blob;
+                        Y.Client.landImage(window.URL.createObjectURL(img_src));
                     };
 
                     pick.onerror = function () { 
@@ -44,22 +35,11 @@
                         var selectedFile = document.getElementById('image-input').files[0];
                         var reader = new FileReader();
 
-                        var img = document.createElement("img");
-                        img.id = 'theImage';
-
-                        var imagePresenter = document.querySelector("#image-presenter");
-
                         reader.onload = function(event) {
-                            img.src = event.target.result;
-                            imagePresenter.appendChild(img);
-                            imagePresenter.style.display = "block";
+                            Y.Client.landImage(event.target.result);
 
-                            // make the img draggable
-                            var dd = new Y.DD.Drag({node: '#theImage'});
                             Y.DD.DDM.on('drag:drag', dragImage);
                             Y.DD.DDM.on('drag:start', dragStart);
-
-                            Y.Client.disableUpload();
                         };
 
                         reader.readAsDataURL(selectedFile);
@@ -165,7 +145,10 @@
 
         function dragImage (e) {
             var image = Y.one("#theImage");
-            console.log(image);// fixme
+            if (!image) {
+                console.log('No image in drag, quiting');
+                return false;
+            }
             var pos = image.getXY();
             var width = image.get('offsetWidth');
             var height = image.get('offsetHeight');
@@ -207,7 +190,7 @@
                 });
                 image.remove();
             }
-
+            return true;
         }
 
         // Drag and drop
@@ -230,27 +213,10 @@
             if (acceptedTypes[files[0].type] === true) {
                 var reader = new FileReader();
                 reader.onload = function (event) {
-                    var image = document.getElementById('theImage');
-                    if (!image) {
-                        image = new Image();
-                        image.setAttribute('id', 'theImage');
-                        image.src = event.target.result;
-                        image.width = 500;
-                        document.body.appendChild(image);
-                        // make the img draggable
-                        var dd = new Y.DD.Drag({
-                            node: '#theImage'
-                        });
-
-                        Y.DD.DDM.on('drag:drag', dragImage);
-                        Y.DD.DDM.on('drag:start', dragStart);
-
-                    } else {
-                        image.src = event.target.result;
-                        image.width = 500;
-                    }
+                    Y.Client.loadImage(event.target.result);
+                    Y.DD.DDM.on('drag:drag', dragImage);
+                    Y.DD.DDM.on('drag:start', dragStart);
                 };
-
                 reader.readAsDataURL(files[0]);
             }
 
