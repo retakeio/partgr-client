@@ -112,6 +112,7 @@ function displayUserlist (userlist) {
 
     var userlistEl = document.querySelector('#useragents');
     userlistEl.innerHTML = '';
+    var found = [];
     for (var i in userlist) {
 
         var user = {};
@@ -122,16 +123,24 @@ function displayUserlist (userlist) {
 
         var img = document.createElement('img');
         if (user.location) {
-            img.setAttribute('title',  user.location.lat + ' ' + user.location.lng);
+            img.setAttribute('title',  user.location.lat.toString().slice(0,6) + ' ' + user.location.lng.toString().slice(0,6));
         }
 
         if (user.family.match(/Mobile/g)) {
+            if (found.indexOf('moz') > -1) continue;
+            found.push('moz');
             img.src = 'images/b2g.png';
         } else if (user.family.match(/Firefox/g)) {
+            if (found.indexOf('ff') > -1) continue;
+            found.push('ff');
             img.src = 'images/aurora.png';
         } else if (user.family.match(/Chrome/g)) {
+            if (found.indexOf('chr') > -1) continue;
+            found.push('chr');
             img.src = 'images/chrome.png';
         } else {
+            if (found.indexOf('chr') > -1) continue;
+            found.push('chr');
             img.src = 'images/chrome.png';
         }
 
