@@ -225,3 +225,7 @@ footer.visible {
 #main img {
     border: 1px solid #fff;
 }
+
+#logo {
+    vertical-align: middle;
+}
