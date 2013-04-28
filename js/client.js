@@ -109,11 +109,33 @@ socket.on('newmsg', handleMsg);
 socket.on('userlist', displayUserlist);
 
 function displayUserlist (userlist) {
-    userlist.forEach(function (user) {
 
-        console.log(user);
+    var userlistEl = document.querySelector('#useragents');
+    userlistEl.innerHTML = '';
+    for (var i in userlist) {
+        var user = {};
+        user.family = userlist[i].family;
+        console.log(userlist[i]);
+        user.location = userlist[i].location;
 
-    });
+        var img = document.createElement('img');
+        img.dataset.lat = user.location.lat;
+        img.dataset.lng = user.location.lng;
+
+        if (user.family.match(/Mobile/g)) {
+            img.src = 'images/b2g.png';
+        } else if (user.family.match(/Firefox/g)) {
+            img.src = 'images/aurora.png';
+        } else if (user.family.match(/Chrome/g)) {
+            img.src = 'images/chrome.png';
+        } else {
+            img.src = 'images/chrome.png';
+        }
+
+        userlistEl.appendChild(img);
+
+
+    }
 }
 
 function appendImage(img, direction) {

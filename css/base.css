@@ -151,6 +151,8 @@ footer.visible {
 #image-presenter img {
   display: block;
   width: 50%;
+  max-width: 500px;
+  max-height: 50%;
   margin:0 auto;
 }
 
@@ -159,11 +161,29 @@ footer.visible {
   padding:.5em;
   font-size:2rem;
   border-radius:10px;
-  position: relative;
   text-align: center;
 }
 
-  .notification:after {
+  .online-users img {
+    width: 20px;
+    background: none;
+    border:none !important;
+    margin:2px;
+    border-radius: 50%;
+  }
+
+    .online-users img:hover:after {
+      content: attr(data-lat + ' ' data-lng);
+      display:inline-block;
+      width:50px;
+      color:#fff;
+    }
+
+  .notification--arow {
+    position: relative;
+  }
+
+  .notification--arow:after {
     content: '';
     display:block;
     position: absolute;
@@ -189,6 +209,14 @@ footer.visible {
     position: fixed;
     bottom: 30px;
     right: 10px;
+}
+
+.online-users {
+    position: fixed;
+    bottom:15px;
+    left:10px;
+    width: 200px;
+    overflow-x:scroll;
 }
 
 #main img {

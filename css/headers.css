@@ -187,6 +187,11 @@ section[role="region"] > header:first-child .icon.icon-edit {
   background-image: url(../images/headers/icons/edit.png);
 }
 
+section[role="region"] > header:first-child .icon.icon-userlist {
+  background-image: url(../images/users.png);
+  background-size: 28px;
+}
+
 section[role="region"] > header:first-child .icon.icon-send {
   background-image: url(../images/headers/icons/send.png);
 }
