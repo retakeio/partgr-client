@@ -1,5 +1,6 @@
     YUI().use("client", function (Y) {
 
+        var DEBUG = false;
         var _proximityTimestamp = -1;
         var _dragStart = {
             x: 0,
@@ -234,4 +235,7 @@
         };
 
 
+        if (DEBUG) {
+            Y.one('#proxibtn').removeClass('hidden');
+        }
     });
