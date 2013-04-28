@@ -72,7 +72,7 @@ function appendImage(img, direction) {
         console.log(direction);
         if (direction.direction == 'right') {
             img.setStyle('left', '-1000px');
-            Y.one('body').append(img);
+            Y.one('#image-presenter').append(img);
             img.transition({
                 duration: 1.5, // seconds
                 easing: 'ease-out',
