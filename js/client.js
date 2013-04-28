@@ -200,9 +200,7 @@ function appendImage(img, direction) {
             img.transition({
                 duration: 1.5, // seconds
                 easing: 'ease-out',
-                opacity: 1,
-                left: direction.left + 'px',
-                top: direction.top + 'px'
+                opacity: 1
             });
         }
         pick = Y.one('#pick-image');
