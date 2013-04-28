@@ -96,9 +96,6 @@ socket.on('connected', function () {
 socket.on('newmsg', handleMsg);
 
 function appendImage(img, direction) {
-
-        if (document.querySelector('.transition'))
-
         if (direction.direction == 'right') {
             img.setStyle('left', '-1000px');
             Y.one('#image-presenter').append(img);
@@ -160,7 +157,10 @@ function appendImage(img, direction) {
 }
 
 function handleMsg (msg) {
-    var img = Y.Node.create('<img class="transition" src="'+ msg.image +'">');
+    if (document.querySelector('.transition'))
+        return ;
+
+    var img = Y.Node.create('<img id="theImage" class="transition" src="'+ msg.image +'">');
     appendImage(img, msg.direction);
 }
 
