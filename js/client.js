@@ -69,6 +69,7 @@ socket.on('newmsg', handleMsg);
 
 function appendImage(img, direction) {
 
+        console.log(img);
         console.log(direction);
         if (direction.direction == 'right') {
             img.setStyle('left', '-1000px');

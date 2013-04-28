@@ -165,6 +165,7 @@
 
         function dragImage (e) {
             var image = Y.one("#theImage");
+            console.log(image);// fixme
             var pos = image.getXY();
             var width = image.get('offsetWidth');
             var height = image.get('offsetHeight');
