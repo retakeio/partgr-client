@@ -66,25 +66,52 @@ socket.on('connected', function () {
 socket.on('newmsg', handleMsg);
 
 function appendImage(img, direction) {
-    if (direction.direction == 'right') {
-        img.setStyle('left', '-1000px');
-        Y.one('body').append(img);
-        img.transition({
-            duration: 1.5, // seconds
-            easing: 'ease-out',
-            top: direction.top + 'px',
-            left: '-450px'
-        });
-    } else {
-        img.setStyle('right', '-1000px');
-        Y.one('body').append(img);
-        img.transition({
-            duration: 1.5, // seconds
-            easing: 'ease-out',
-            top: direction.top + 'px',
-            right: '-450px'
-        });
-    }
+
+        console.log(direction);
+        if (direction.direction == 'right') {
+            img.setStyle('left', '-1000px');
+            Y.one('body').append(img);
+            img.transition({
+                duration: 1.5, // seconds
+                easing: 'ease-out',
+                top: direction.top + 'px',
+                left: '-450px'
+            });
+        }
+        if (direction.direction == 'left') {
+            img.setStyle('right', '-1000px');
+            Y.one('body').append(img);
+            img.transition({
+                duration: 1.5, // seconds
+                easing: 'ease-out',
+                top: direction.top + 'px',
+                right: '-450px'
+            });
+        }
+        if (direction.direction == 'bottom') {
+            img.setStyles({
+                'left': direction.left + 'px',
+                'top': '-200px'
+            });
+            Y.one('body').append(img);
+            img.transition({
+                duration: 1.5, // seconds
+                easing: 'ease-out',
+                top: '-100px'
+            });
+        }
+        if (direction.direction == 'top') {
+            img.setStyles({
+                'left': direction.left + 'px',
+                'bottom': '-200px'
+            });
+            Y.one('body').append(img);
+            img.transition({
+                duration: 1.5, // seconds
+                easing: 'ease-out',
+                bottom: '-100px'
+            });
+        }
 
     var dd = new Y.DD.Drag({
         node: img

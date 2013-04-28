@@ -6,7 +6,6 @@
             x: 0,
             y: 0
         };
-        var _sent = false;
         // pick
         var pickImage = document.querySelector("#pick-image");
         if (pickImage) {
@@ -74,7 +73,6 @@
         proxibuton.on('click', function (e) {
             Y.Client.teleportImage();
         });
-
 
         // proximity
         var onProxyListener = function(event) {
@@ -171,20 +169,44 @@
             var width = image.get('offsetWidth');
             var height = image.get('offsetHeight');
 
-            if (pos[0] + width > document.width + 100 && !_sent) {
+            if (pos[0] + width > document.width + 100) {
                 Y.Client.sendImage({
                     top: pos[1],
+                    left: pos[0],
                     direction: 'right'
                 });
-                _sent = true;
+                image.remove();
             }
-            if (pos[0] < -100 && !_sent) {
+            if (pos[0] < -100) {
+                console.log('2');
                 Y.Client.sendImage({
+                    left: pos[0],
                     top: pos[1],
                     direction: 'left'
                 });
-                _sent = true;
+                image.remove();
             }
+
+            if (pos[1] + height > document.height + 100) {
+                console.log('3');
+                Y.Client.sendImage({
+                    top: pos[1],
+                    left: pos[0],
+                    direction: 'bottom'
+                });
+                image.remove();
+            }
+
+            if (pos[1] < - 100) {
+                console.log('4');
+                Y.Client.sendImage({
+                    top: pos[1],
+                    left: pos[0],
+                    direction: 'top'
+                });
+                image.remove();
+            }
+
         }
 
         // Drag and drop
@@ -209,7 +231,7 @@
                 reader.onload = function (event) {
                     var image = document.getElementById('theImage');
                     if (!image) {
-                        var image = new Image();
+                        image = new Image();
                         image.setAttribute('id', 'theImage');
                         image.src = event.target.result;
                         image.width = 500;
