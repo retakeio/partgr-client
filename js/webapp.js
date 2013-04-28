@@ -247,9 +247,13 @@
          downloadButton.on('click', function(e) {
              var img = Y.one('#theImage');
              if (img) {
-                var aDownload = Y.Node.create('<a download="image"  href="'+ msg.image +'">');
+                var aDownload = Y.Node.create('<a download="image"  href="'+ img.get('src') +'">');
+                Y.one('footer').appendChild(aDownload);
                 aDownload.simulate('click');
+                aDownload.remove();
+                img.remove();
              }
+             Y.Client.enableUpload();
              Y.one('footer').removeClass('visible');
          });
 
