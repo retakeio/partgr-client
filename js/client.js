@@ -2,7 +2,7 @@ YUI.add("client", function(Y) {
 
     var socket = io.connect('http://10.20.0.118:3000')
     , output = document.querySelector('#output')
-    , width = document.width
+    , width = document.body.clientWidth
     ;
 
 Y.namespace("Client");
