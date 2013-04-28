@@ -137,6 +137,9 @@ footer.visible {
 [role="toolbar"] li button.update {
     background-image: url("../images/toolbars/icons/update.png");
 }
+[role="toolbar"] li button.delete{
+    background-image: url("../images/headers/icons/close.png");
+}
 
 #image-presenter {
   width: 100%;

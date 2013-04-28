@@ -223,6 +223,15 @@
             return false;
         };
 
+        // buttons on footer
+        var delbut = Y.one('#delete');
+        delbut.on('click', function (e) {
+            var img = Y.one('#theImage');
+            if (img) {
+                img.remove();
+            }
+            Y.Client.enableUpload();
+        });
 
         if (DEBUG) {
             Y.one('#proxibtn').removeClass('hidden');
