@@ -1,6 +1,6 @@
 {
     "version": "1",
-    "name": "Partgr",
+    "name": "ShipIt",
     "launch_path": "/index.html",
     "description": "Easily share pictures across devices.",
     "icons": {
@@ -11,7 +11,7 @@
         "128": "/images/logo128.png"
     },
     "developer": {
-        "name": "retakeio team",
+        "name": "retake.io team",
         "url": "http://retake.io"
     },
     "installs_allowed_from": ["*"],
