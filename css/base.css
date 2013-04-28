@@ -140,6 +140,9 @@ footer.visible {
 [role="toolbar"] li button.delete{
     background-image: url("../images/headers/icons/close.png");
 }
+[role="toolbar"] li button.download{
+    background-image: url("../images/headers/icons/download.png");
+}
 
 #image-presenter {
   width: 100%;
