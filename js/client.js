@@ -81,6 +81,11 @@ Y.Client.sendImage = function (direction) {
         imagePresenter.style.display = "block";
         var dd = new Y.DD.Drag({node: '#theImage'});
 
+        img = Y.one('#theImage');
+        img.on('tap', function (event) {
+            document.querySelector('footer').classList.add('visible');
+        });
+
         Y.Client.disableUpload();
         return true;
     };
