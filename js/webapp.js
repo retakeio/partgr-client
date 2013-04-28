@@ -1,6 +1,6 @@
     YUI().use("client", function (Y) {
 
-        var DEBUG = false;
+        var DEBUG = true;
         var _proximityTimestamp = -1;
         var _dragStart = {
             x: 0,
@@ -133,8 +133,8 @@
                 var deviceStorage = navigator.getDeviceStorage("pictures"),
                     cursor = deviceStorage.enumerate(); 
 
-                        deviceStoragePicturesDisplay.innerHTML = "<h4>Result from deviceStorage - pictures</h4>";
-                 
+                    deviceStoragePicturesDisplay.innerHTML = "<h4>Result from deviceStorage - pictures</h4>";
+
                       cursor.onsuccess = function() { 
                         if (!cursor.result)  {
                             deviceStoragePicturesDisplay.innerHTML = "No files";

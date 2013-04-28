@@ -40,7 +40,9 @@ Y.Client.sendImage = function (direction) {
     };
 
     Y.Client.teleportImage = function () {
-        Y.Client.sendImage('spoof');
+        Y.Client.sendImage({
+            direction: 'spoof'
+        });
         Y.one('#theImage').transition({
             duration: 1.5, // seconds
             easing: 'ease-out',
@@ -80,7 +82,7 @@ function appendImage(img, direction) {
         }
         if (direction.direction == 'left') {
             img.setStyle('right', '-1000px');
-            Y.one('body').append(img);
+            Y.one('#image-presenter').append(img);
             img.transition({
                 duration: 1.5, // seconds
                 easing: 'ease-out',
@@ -93,7 +95,7 @@ function appendImage(img, direction) {
                 'left': direction.left + 'px',
                 'top': '-200px'
             });
-            Y.one('body').append(img);
+            Y.one('#image-presenter').append(img);
             img.transition({
                 duration: 1.5, // seconds
                 easing: 'ease-out',
@@ -105,11 +107,20 @@ function appendImage(img, direction) {
                 'left': direction.left + 'px',
                 'bottom': '-200px'
             });
-            Y.one('body').append(img);
+            Y.one('#image-presenter').append(img);
             img.transition({
                 duration: 1.5, // seconds
                 easing: 'ease-out',
                 bottom: '-100px'
+            });
+        }
+        if (direction.direction == 'spoof') {
+            img.setStyle('opacity', 0);
+            Y.one('#image-presenter').append(img);
+            img.transition({
+                duration: 1.5, // seconds
+                easing: 'ease-out',
+                opacity: 1
             });
         }
 
