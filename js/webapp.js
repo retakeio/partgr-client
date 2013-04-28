@@ -78,9 +78,18 @@
             } else {
                 if (_proximityTimestamp != -1) {
                     var now = new Date().getTime();
-                    if (now - _proximityTimestamp >= 100)
-            alert("sending");
-        _proximityTimestamp = -1;
+                    if (now - _proximityTimestamp >= 100) {
+                        sendImage('spoof');
+                        Y.one('#theImage').transition({
+                            duration: 1.5, // seconds
+                            easing: 'ease-out',
+                            opacity: '0'
+                        }, function () {
+                            this.remove();
+                        });
+
+                    }
+                    _proximityTimestamp = -1;
                 }
             }
         });
