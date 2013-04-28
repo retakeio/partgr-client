@@ -157,7 +157,10 @@
             var width = image.get('offsetWidth');
             var height = image.get('offsetHeight');
 
-            if (pos[0] + width > document.width + 100) {
+            var dWidth = document.body.clientWidth;
+            var dHeight = document.body.clientHeight;
+
+            if (pos[0] + width > dWidth + 100) {
                 Y.Client.sendImage({
                     top: pos[1],
                     left: pos[0],
@@ -175,7 +178,7 @@
                 image.remove();
             }
 
-            if (pos[1] + height > document.height + 100) {
+            if (pos[1] + height > dHeight + 100) {
                 console.log('3');
                 Y.Client.sendImage({
                     top: pos[1],
