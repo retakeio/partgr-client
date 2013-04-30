@@ -1,4 +1,4 @@
-# ShareIt
+# ShipIt
 
 An over the fly photo sharing web application, using swipe gesture or air flip - proximity..
 
@@ -15,3 +15,7 @@ major desktop browsers.
 License: GPL v2.0 or similar.
 
 Technologies: YUI, NodeJS, Firefox OS Boilerplate.
+
+## Make sure you have the server running first, see how [here](https://github.com/retakeio/partgr-server)
+* clone the repo
+* run a localserver and navigate to the application page
