@@ -1,6 +1,6 @@
 YUI.add("client", function(Y) {
 
-    var socket = io.connect('http://nimbus.mihneadb.net:3000')
+    var socket = io.connect('http://shipit.eu01.aws.af.cm')
     , output = document.querySelector('#output')
     , width = document.body.clientWidth
     ;
