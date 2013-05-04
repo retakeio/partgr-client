@@ -151,11 +151,11 @@ function appendImage(img, direction) {
         if (direction.direction == 'right') {
             img.css('left', '-1000px');
             $('#image-presenter').append(img);
-            img.transition({
-                duration: 1.5, // seconds
-                easing: 'ease-out',
+            img.animate({
                 top: direction.top + 'px',
                 left: - parseInt(img.css('width'), 10) / 2 + 'px'
+            }, {
+                duration: 1500
             });
         }
         if (direction.direction == 'left') {
