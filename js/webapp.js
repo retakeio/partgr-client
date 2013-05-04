@@ -1,5 +1,3 @@
-    YUI().use("client", function (Y) {
-
         var DEBUG = true;
         var DEBUG = false;
         var _proximityTimestamp = -1;
@@ -21,7 +19,7 @@
 
                     pick.onsuccess = function () { 
                         var img_src = this.result.blob;
-                        Y.Client.landImage(window.URL.createObjectURL(img_src));
+                        landImage(window.URL.createObjectURL(img_src));
                         Y.DD.DDM.on('drag:drag', dragImage);
                         Y.DD.DDM.on('drag:start', dragStart);
                         console.log('got pic!');
@@ -34,28 +32,25 @@
             } else {
                 // fallback when there is no activity
                 pickImage.onclick = function () {
-                    var input = Y.one('#image-input');
+                    var input = $('#image-input');
                     input.on('change', function (event) {
                         var selectedFile = document.getElementById('image-input').files[0];
                         var reader = new FileReader();
 
                         reader.onload = function(event) {
-                            Y.Client.landImage(event.target.result);
-
-                            Y.DD.DDM.on('drag:drag', dragImage);
-                            Y.DD.DDM.on('drag:start', dragStart);
+                            landImage(event.target.result);
                         };
 
                         reader.readAsDataURL(selectedFile);
                     });
-                    input.simulate('click');
+                    input.trigger('click');
                 };
             }
         }
 
-        var proxibuton = Y.one('#proxibtn');
+        var proxibuton = $('#proxibtn');
         proxibuton.on('click', function (e) {
-            Y.Client.teleportImage();
+            teleportImage();
         });
 
         // proximity
@@ -66,7 +61,7 @@
                 if (_proximityTimestamp != -1) {
                     var now = new Date().getTime();
                     if (now - _proximityTimestamp >= 100) {
-                        Y.Client.teleportImage();
+                        teleportImage();
                     }
                     _proximityTimestamp = -1;
                 }
@@ -143,68 +138,6 @@
             };
         }
 
-        function dragStart (e) {
-            _dragStart.x = e.pageX;
-            _dragStart.y = e.pageY;
-        }
-
-        function dragImage (e) {
-            var image = Y.one("#theImage");
-            if (!image) {
-                console.log('No image in drag, quiting');
-                return false;
-            }
-            if (document.querySelector('.transition')) {
-                console.log('Only received images, quiting')
-                return false;
-            }
-            var pos = image.getXY();
-            var width = image.get('offsetWidth');
-            var height = image.get('offsetHeight');
-
-            var dWidth = document.body.clientWidth;
-            var dHeight = document.body.clientHeight;
-            console.log(pos[0] + width > dWidth + width / 4);
-            if (pos[0] + width > dWidth + width / 4) {
-                Y.Client.sendImage({
-                    top: pos[1],
-                    left: pos[0],
-                    direction: 'right'
-                });
-                image.remove();
-            }
-            if (pos[0] < -width / 4) {
-                console.log('2');
-                Y.Client.sendImage({
-                    left: pos[0],
-                    top: pos[1],
-                    direction: 'left'
-                });
-                image.remove();
-            }
-
-            if (pos[1] + height > dHeight + height / 4) {
-                console.log('3');
-                Y.Client.sendImage({
-                    top: pos[1],
-                    left: pos[0],
-                    direction: 'bottom'
-                });
-                image.remove();
-            }
-
-            if (pos[1] < - height / 4) {
-                console.log('4');
-                Y.Client.sendImage({
-                    top: pos[1],
-                    left: pos[0],
-                    direction: 'top'
-                });
-                image.remove();
-            }
-            return true;
-        }
-
         // Drag and drop
         var doc = document.documentElement;
         var acceptedTypes = {
@@ -227,9 +160,7 @@
                 console.log('accepted');
                 var reader = new FileReader();
                 reader.onload = function (event) {
-                    Y.Client.landImage(event.target.result);
-                    Y.DD.DDM.on('drag:drag', dragImage);
-                    Y.DD.DDM.on('drag:start', dragStart);
+                    landImage(event.target.result);
                 };
                 reader.readAsDataURL(files[0]);
             }
@@ -238,31 +169,26 @@
         };
 
         // buttons on footer
-         var delbut = Y.one('#delete');
+         var delbut = $('#delete');
          delbut.on('click', function (e) {
              var img = Y.one('#theImage');
              if (img) {
                  img.remove();
              }
-             Y.Client.enableUpload();
-             Y.one('footer').removeClass('visible');
+             enableUpload();
+             $('footer').removeClass('visible');
          });
 
-         var downloadButton = Y.one('#download');
+         var downloadButton = $('#download');
          downloadButton.on('click', function(e) {
-             var img = Y.one('#theImage');
+             var img = $('#theImage');
              if (img) {
-                var aDownload = Y.Node.create('<a download="image"  href="'+ img.get('src') +'">');
-                Y.one('footer').appendChild(aDownload);
-                aDownload.simulate('click');
+                var aDownload = $('<a download="image"  href="'+ img.get('src') +'">');
+                $('footer').appendChild(aDownload);
+                aDownload.trigger('click');
                 aDownload.remove();
                 img.remove();
              }
-             Y.Client.enableUpload();
-             Y.one('footer').removeClass('visible');
+             enableUpload();
+             $('footer').removeClass('visible');
          });
-
-        if (DEBUG) {
-            Y.one('#proxibtn').removeClass('hidden');
-        }
-    });

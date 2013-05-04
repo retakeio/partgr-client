@@ -1,12 +1,9 @@
-YUI.add("client", function(Y) {
+var socket = io.connect('http://shipit.jit.su:80')
+, output = document.querySelector('#output')
+, width = document.body.clientWidth
+;
 
-    var socket = io.connect('http://shipit.jit.su:80')
-    , output = document.querySelector('#output')
-    , width = document.body.clientWidth
-    ;
-
-Y.namespace("Client");
-Y.Client.sendImage = function (direction) {
+var sendImage = function (direction) {
     var c = document.getElementById("canvas");
     var ctx = c.getContext("2d");
     var data;
@@ -26,67 +23,68 @@ Y.Client.sendImage = function (direction) {
     return true;
 };
 
-    Y.Client.disableUpload = function () {
+    var disableUpload = function () {
         // called when a picture occupies the space
-        tipText = Y.one('#tip');
+        tipText = $('#tip');
         tipText.addClass('hidden');
 
-        pick = Y.one('#pick-image');
+        pick = $('#pick-image');
         pick.addClass('hidden');
     };
 
-    Y.Client.enableUpload = function () {
+    var enableUpload = function () {
         // called when the space is free again
-        tipText = Y.one('#tip');
+        tipText = $('#tip');
         tipText.removeClass('hidden');
 
-        pick = Y.one('#pick-image');
+        pick = $('#pick-image');
         pick.removeClass('hidden');
     };
 
-    Y.Client.teleportImage = function () {
+    var teleportImage = function () {
         if (document.querySelector('.transition')) {
             console.log('Wont teleport received images');
             return false;
         }
-        Y.Client.sendImage({
+        sendImage({
             direction: 'spoof'
         });
-        var img = Y.one('#theImage');
+        var img = $('#theImage');
         if (img) {
-            img.transition({
-                duration: 1.5, // seconds
-                easing: 'ease-out',
-                opacity: '0'
-            }, function () {
+            img.fadeOut('slow', function () {
                 this.remove();
             });
         }
         return true;
     };
 
-    Y.Client.landImage = function (data) {
+    var landImage = function (data) {
         // Make a new image appear; if there is one; fail
         if (document.getElementById('theImage')) {
             console.log('There is already an image on screen');
             return false;
         }
 
-        var img = document.createElement("img");
+        console.log('landing image');
+
+        var img = document.createElement("img"); // fixme
         img.id = 'theImage';
         img.src = data;
         //img.width = 500;
         var imagePresenter = document.querySelector("#image-presenter");
         imagePresenter.appendChild(img);
         imagePresenter.style.display = "block";
-        var dd = new Y.DD.Drag({node: '#theImage'});
+        img = $('#theImage');
+        img.draggable({
+            start: dragStart,
+            drag : dragImage
+        });
 
-        img = Y.one('#theImage');
         img.on('tap', function (event) {
             document.querySelector('footer').classList.add('visible');
         });
 
-        Y.Client.disableUpload();
+        disableUpload();
         return true;
     };
 
@@ -151,66 +149,66 @@ function displayUserlist (userlist) {
 
 function appendImage(img, direction) {
         if (direction.direction == 'right') {
-            img.setStyle('left', '-1000px');
-            Y.one('#image-presenter').append(img);
+            img.css('left', '-1000px');
+            $('#image-presenter').append(img);
             img.transition({
                 duration: 1.5, // seconds
                 easing: 'ease-out',
                 top: direction.top + 'px',
-                left: - parseInt(img.getStyle('width'), 10) / 2 + 'px'
+                left: - parseInt(img.css('width'), 10) / 2 + 'px'
             });
         }
         if (direction.direction == 'left') {
-            img.setStyle('right', '-1000px');
-            Y.one('#image-presenter').append(img);
-            img.transition({
-                duration: 1.5, // seconds
-                easing: 'ease-out',
+            img.css('right', '-1000px');
+            $('#image-presenter').append(img);
+            img.animate({
                 top: direction.top + 'px',
-                right: - parseInt(img.getStyle('width'), 10) / 2 + 'px'
+                right: - parseInt(img.css('width'), 10) / 2 + 'px'
+            }, {
+                duration: 1500
             });
         }
         if (direction.direction == 'bottom') {
-            img.setStyles({
+            img.css({
                 'left': direction.left + 'px',
                 'top': '-200px'
             });
-            Y.one('#image-presenter').append(img);
-            img.transition({
-                duration: 1.5, // seconds
-                easing: 'ease-out',
-                top: - parseInt(img.getStyle('height'), 10) / 2 + 'px'
+            $('#image-presenter').append(img);
+            img.animate({
+                top: - parseInt(img.css('height'), 10) / 2 + 'px'
+            }, {
+                duration: 1500
             });
         }
         if (direction.direction == 'top') {
-            img.setStyles({
+            img.css({
                 'left': direction.left + 'px',
                 'bottom': '-200px'
+            }, {
+                duration: 1500
             });
-            Y.one('#image-presenter').append(img);
-            img.transition({
-                duration: 1.5, // seconds
-                easing: 'ease-out',
-                bottom:  - parseInt(img.getStyle('height'), 10) / 2 + 'px'
+            $('#image-presenter').append(img);
+            img.animate({
+                bottom:  - parseInt(img.css('height'), 10) / 2 + 'px'
+            }, {
+                duration: 1500
             });
         }
         if (direction.direction == 'spoof') {
-            img.setStyle('opacity', 0);
-            Y.one('#image-presenter').append(img);
-            img.transition({
-                duration: 1.5, // seconds
-                easing: 'ease-out',
+            img.css('opacity', 0);
+            $('#image-presenter').append(img);
+            img.animate({
                 opacity: 1
+            }, {
+                duration: 1500
             });
         }
-        pick = Y.one('#pick-image');
+        pick = $('#pick-image');
         pick.addClass('hidden');
-        tipText = Y.one('#tip');
+        tipText = $('#tip');
         tipText.addClass('hidden');
 
-    var dd = new Y.DD.Drag({
-        node: img
-    });
+    img.draggable();
 
 }
 
@@ -220,7 +218,7 @@ function handleMsg (msg) {
         return ;
     }
 
-    var img = Y.Node.create('<img id="theImage" class="transition" src="'+ msg.image +'">');
+    var img = $('<img id="theImage" class="transition" src="'+ msg.image +'">');
     img.on('tap', function (event) {
         document.querySelector('footer').classList.add('visible');
     });
@@ -231,8 +229,6 @@ function sendMsg (msg) {
     socket.emit('msg', msg);
     // We are done, next image please
     setTimeout(function () {
-        Y.Client.enableUpload();
+        enableUpload();
     }, 1500);
 }
-
-}, "1.0.0", {requires: ['node', 'event', 'node-event-simulate', 'dd-drag','transition']});
