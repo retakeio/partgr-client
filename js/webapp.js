@@ -78,29 +78,30 @@
         // Geolocation
         var geolocationDisplay = document.querySelector("#geolocation-display");
 
-        function codeLatLng(position) {
-            var geocoder = new google.maps.Geocoder();
-            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        // function codeLatLng(position) {
+        //     var geocoder = new google.maps.Geocoder();
+        //     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-            geocoder.geocode({'latLng': latlng}, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[1]) {
-                        geolocationDisplay.innerHTML = results[1].formatted_address;
-                    } else {
-                        alert('No results found');
-                    }
-                } else {
-                    alert('Geocoder failed due to: ' + status);
-                }
-            });
-        }
+        //     geocoder.geocode({'latLng': latlng}, function(results, status) {
+        //         if (status == google.maps.GeocoderStatus.OK) {
+        //             if (results[1]) {
+        //                 geolocationDisplay.innerHTML = results[1].formatted_address;
+        //             } else {
+        //                 alert('No results found');
+        //             }
+        //         } else {
+        //             console.log(status);
+        //             alert('Geocoder failed due to: ' + status);
+        //         }
+        //     });
+        // }
 
         if (geolocationDisplay) {
             (function () {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     geolocationDisplay.innerHTML = "<strong>Latitude:</strong> " + position.coords.latitude + ", <strong>Longitude:</strong> " + position.coords.longitude;
                     geolocationDisplay.style.display = "block";
-                    codeLatLng(position);
+                    // codeLatLng(position);
                 },
                 function (position) {
                     geolocationDisplay.innerHTML = "failed to get your current location";

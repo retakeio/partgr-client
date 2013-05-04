@@ -1,6 +1,6 @@
 YUI.add("client", function(Y) {
 
-    var socket = io.connect('http://shipit.nodejitsu.com')
+    var socket = io.connect('http://shipit.jit.su:80')
     , output = document.querySelector('#output')
     , width = document.body.clientWidth
     ;
