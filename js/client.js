@@ -42,7 +42,7 @@ define(['dragevents'], function (dragevents) {
 			var img = document.createElement("img"); // fixme
 			img.id = 'theImage';
 			img.src = data;
-			//img.width = 500;
+
 			var imagePresenter = document.querySelector("#image-presenter");
 			imagePresenter.appendChild(img);
 			imagePresenter.style.display = "block";

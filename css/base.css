@@ -135,13 +135,13 @@ footer.visible {
 }
 
 [role="toolbar"] li button.update {
-    background-image: url("../images/toolbars/icons/update.png");
+    background: url("../images/toolbars/icons/update.png") no-repeat;
 }
 [role="toolbar"] li button.delete{
-    background-image: url("../images/headers/icons/close.png");
+    background: url("../images/headers/icons/close.png") no-repeat;
 }
 [role="toolbar"] li button.download{
-    background-image: url("../images/headers/icons/download.png");
+    background: url("../images/headers/icons/download.png") no-repeat;
 }
 
 #image-presenter {
@@ -150,7 +150,7 @@ footer.visible {
 
 #image-presenter img {
   display: block;
-  width: 35%;
+  max-width: 50%;
   margin:0 auto;
 }
 
