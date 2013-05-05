@@ -167,7 +167,7 @@ require(['client'], function (Client) {
 		// buttons on footer
 		var delbut = $('#delete');
 		delbut.on('click', function (e) {
-			var img = Y.one('#theImage');
+			var img = $('#theImage');
 			if (img) {
 				img.remove();
 			}

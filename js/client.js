@@ -190,8 +190,8 @@ define(['dragevents'], function (dragevents) {
 		}
 
 		var img = $('<img id="theImage" class="transition" src="'+ msg.image +'">');
-		img.on('tap', function (event) {
-			document.querySelector('footer').classList.add('visible');
+		img.on('click', function (event) {
+			$('footer').addClass('visible');
 		});
 		appendImage(img, msg.direction);
 	}
