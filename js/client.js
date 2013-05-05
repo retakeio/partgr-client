@@ -51,7 +51,7 @@ define(['dragevents'], function (dragevents) {
 				drag : dragevents.dragImage
 			});
 
-			img.on('tap', function (event) {
+			img.on('click', function (event) {
 				document.querySelector('footer').classList.add('visible');
 			});
 
