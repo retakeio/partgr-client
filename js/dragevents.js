@@ -14,7 +14,7 @@ define(['sendImage'],function (send) {
 			left : $(this).offset().left,
 			top  : $(this).offset().top
 		};
-		
+
 		var width = parseInt(image.css('width'), 10);
 		var height = parseInt(image.css('height'), 10);
 
@@ -64,7 +64,8 @@ define(['sendImage'],function (send) {
 	}
 
 	return {
-		dragImage: dragImage
+		dragImage: dragImage,
+		enableUpload: send.enableUpload
 	};
 
 });

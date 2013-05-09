@@ -28,8 +28,6 @@
 
     <section role="region">
         <header>
-            <!-- Icon that will indicate whether you are online or offline - enabled if you are using offline/appcache (see above) -->
-            <!--<div id="online-status" title="Online"></div>-->
             <menu type="toolbar">
                 <button id="pick-image"><span class="icon icon-add">Pick image</span></button>
                 <button id="proxibtn" class="hidden"><span class="icon icon-send">Proxi</span></button>
@@ -75,10 +73,10 @@
     <script>
         var socket = io.connect('http://shipit.jit.su:80');
     </script>
+    <script type="text/javascript" src="js/google-min.js?v=3.exp&sensor=false"></script>
     <script data-main="js/webapp.js" src="js/require.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery-ui.js"></script>
-    <!-- <script type="text/javascript" src="js/google-min.js?v=3.exp&sensor=false"></script> -->
     <script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="js/base.js"></script>
     <script type="text/javascript" src="js/offline.js"></script>

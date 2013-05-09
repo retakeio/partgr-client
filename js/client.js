@@ -1,4 +1,4 @@
-define(['dragevents'], function (dragevents) {
+define(['dragevents', 'geocode'], function (dragevents, geocode) {
 
 	var output = document.querySelector('#output')
 	, width = document.body.clientWidth
@@ -198,7 +198,9 @@ define(['dragevents'], function (dragevents) {
 
 	return {
 		landImage: landImage,
-		teleportImage: teleportImage
+		teleportImage: teleportImage,
+		enableUpload: dragevents.enableUpload,
+		codeLatLng: geocode.codeLatLng
 	};
 
 });

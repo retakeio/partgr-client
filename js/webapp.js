@@ -28,7 +28,7 @@ require(['client'], function (Client) {
 					pick.onerror = function () { 
 						alert("Can't view the image!");
 					};
-				}
+				};
 			} else {
 				// fallback when there is no activity
 				pickImage.onclick = function () {
@@ -73,30 +73,12 @@ require(['client'], function (Client) {
 		// Geolocation
 		var geolocationDisplay = document.querySelector("#geolocation-display");
 
-		// function codeLatLng(position) {
-		//     var geocoder = new google.maps.Geocoder();
-		//     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-		//     geocoder.geocode({'latLng': latlng}, function(results, status) {
-		//         if (status == google.maps.GeocoderStatus.OK) {
-		//             if (results[1]) {
-		//                 geolocationDisplay.innerHTML = results[1].formatted_address;
-		//             } else {
-		//                 alert('No results found');
-		//             }
-		//         } else {
-		//             console.log(status);
-		//             alert('Geocoder failed due to: ' + status);
-		//         }
-		//     });
-		// }
-
 		if (geolocationDisplay) {
 			(function () {
 				navigator.geolocation.getCurrentPosition(function (position) {
 					geolocationDisplay.innerHTML = "<strong>Latitude:</strong> " + position.coords.latitude + ", <strong>Longitude:</strong> " + position.coords.longitude;
 					geolocationDisplay.style.display = "block";
-					// codeLatLng(position);
+					Client.codeLatLng(position);
 				},
 				function (position) {
 					geolocationDisplay.innerHTML = "failed to get your current location";
