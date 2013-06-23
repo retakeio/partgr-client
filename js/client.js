@@ -42,6 +42,7 @@ define(['dragevents', 'geocode'], function (dragevents, geocode) {
 			var img = document.createElement("img"); // fixme
 			img.id = 'theImage';
 			img.src = data;
+			img.width = Math.min(img.width, 800);
 
 			var imagePresenter = document.querySelector("#image-presenter");
 			imagePresenter.appendChild(img);

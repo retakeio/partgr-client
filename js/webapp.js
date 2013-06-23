@@ -1,6 +1,5 @@
 require(['client'], function (Client) {
 
-		var DEBUG = true;
 		var DEBUG = false;
 		var _proximityTimestamp = -1;
 		var _dragStart = {
@@ -16,7 +15,7 @@ require(['client'], function (Client) {
 						name: "pick",
 						data: {
 							type: ["image/png", "image/jpg", "image/jpeg"]
-						 }
+						}
 					});
 
 					pick.onsuccess = function () { 
@@ -75,10 +74,13 @@ require(['client'], function (Client) {
 
 		if (geolocationDisplay) {
 			(function () {
-				navigator.geolocation.getCurrentPosition(function (position) {
+				navigator.geolocation.getCurrentPosition(function getUserGeolocation (position) {
 					geolocationDisplay.innerHTML = "<strong>Latitude:</strong> " + position.coords.latitude + ", <strong>Longitude:</strong> " + position.coords.longitude;
-					geolocationDisplay.style.display = "block";
-					Client.codeLatLng(position);
+					geolocationDisplay.style.display = 'block';
+					Client.codeLatLng(position, function (err, address) {
+						if (err) console.log(err);
+						else geolocationDisplay.innerHTML = '<strong>' + address + '</strong>';
+					});
 				},
 				function (position) {
 					geolocationDisplay.innerHTML = "failed to get your current location";
@@ -110,7 +112,7 @@ require(['client'], function (Client) {
 						deviceStoragePicturesDisplay.innerHTML += filePresentation;
 
 						deviceStoragePicturesDisplay.style.display = "block";
-						 };
+					 };
 
 				  cursor.onerror = function () {
 					console.log("Error");
