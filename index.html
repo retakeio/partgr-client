@@ -28,10 +28,7 @@
 
     <section role="region">
         <header>
-            <!-- Icon that will indicate whether you are online or offline - enabled if you are using offline/appcache (see above) -->
-            <!--<div id="online-status" title="Online"></div>-->
             <menu type="toolbar">
-                <button id="pick-image"><span class="icon icon-add">Pick image</span></button>
                 <button id="proxibtn" class="hidden"><span class="icon icon-send">Proxi</span></button>
             </menu>
             <h1>
@@ -50,7 +47,9 @@
 
     <p id="useragents" class='online-users'></p>
 
-     <p id="tip" class='notification notification--arow'>Choose a photo to share.</p>
+        <div id="pick-image" class='choose-image'>
+            <h2>Add an image</h2>
+        </div>
 
         <div id="image-presenter">
         </div>
@@ -71,18 +70,15 @@
         </div>
     </footer>
 
-    <script src="http://shipit.jit.su/socket.io/socket.io.js"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script>
-        var socket = io.connect('http://shipit.jit.su:80');
+        var socket = io.connect('http://localhost:3000');
     </script>
-    <script data-main="js/webapp.js" src="js/require.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery-ui.js"></script>
-    <!-- <script type="text/javascript" src="js/google-min.js?v=3.exp&sensor=false"></script> -->
     <script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
-    <script type="text/javascript" src="js/base.js"></script>
-    <script type="text/javascript" src="js/offline.js"></script>
-
+    <script data-main="js/webapp.js" src="js/require.js"></script>
 
     <!--
         Loosely based on fxosstub: https://github.com/Jaxo/fxosstub

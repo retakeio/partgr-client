@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<!--
+    Exchange the line above for this to enable offline support
+    <html manifest="manifest.appcache">
+
+    Please make your homework before doing this:
+        http://www.alistapart.com/articles/application-cache-is-a-douchebag/
+        http://appcachefacts.info
+
+    This might be necessary to set up on your server, to make sure
+    files are updated when the appcache file itself is:
+        https://github.com/robnyman/Firefox-OS-Boilerplate-App/blob/gh-pages/.htaccess
+ -->
+<head>
+    <meta charset="utf-8">
+    <meta name=viewport content=width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/headers.css">
+    <link rel="stylesheet" type="text/css" href="css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="css/toolbars.css">
+    <link rel="stylesheet" type="text/css" href="css/shared/progress_activity.css">
+    <title>Partgr</title>
+</head>
+
+<body>
+
+    <section role="region">
+        <header>
+            <!-- Icon that will indicate whether you are online or offline - enabled if you are using offline/appcache (see above) -->
+            <!--<div id="online-status" title="Online"></div>-->
+            <menu type="toolbar">
+                <button id="pick-image"><span class="icon icon-add">Pick image</span></button>
+            </menu>
+            <h1>
+                Partgr
+            </h1>
+        </header>
+    </section>
+
+
+    <section role="region" id="geolocation-display">
+        <progress></progress> waiting for location...
+    </section>
+
+    <div id="main">
+
+     <p id="tip">Press the + button in the top right corner to choose a photo to share.</p>
+
+     <div id="image-presenter">
+        <img id="theImage" class='selected-image' src="images/moz.png">
+     </div>
+
+    </div>
+
+    <!--<footer>-->
+        <!--<div role="toolbar">-->
+            <!--<ul>-->
+                <!--<li><button id="reload" class="update">Update</button></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</footer>-->
+
+    <script src="js/jquery.js"></script>
+    <script>
+
+        $('#theImage').on('click', function () {
+            alert('touched me!');
+        });
+
+    </script>
+
+
+    <!--
+        Loosely based on fxosstub: https://github.com/Jaxo/fxosstub
+    -->
+
+</body>
+</html>

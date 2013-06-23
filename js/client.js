@@ -1,4 +1,4 @@
-define(['dragevents'], function (dragevents) {
+define(['dragevents', 'geocode'], function (dragevents, geocode) {
 
 	var output = document.querySelector('#output')
 	, width = document.body.clientWidth
@@ -42,6 +42,7 @@ define(['dragevents'], function (dragevents) {
 			var img = document.createElement("img"); // fixme
 			img.id = 'theImage';
 			img.src = data;
+			img.width = Math.min(img.width, 800);
 
 			var imagePresenter = document.querySelector("#image-presenter");
 			imagePresenter.appendChild(img);
@@ -198,7 +199,9 @@ define(['dragevents'], function (dragevents) {
 
 	return {
 		landImage: landImage,
-		teleportImage: teleportImage
+		teleportImage: teleportImage,
+		enableUpload: dragevents.enableUpload,
+		codeLatLng: geocode.codeLatLng
 	};
 
 });
