@@ -14,7 +14,7 @@ major desktop browsers.
 
 License: GPL v2.0 or similar.
 
-Technologies: YUI, NodeJS, Firefox OS Boilerplate.
+Technologies: NodeJS, Firefox OS Boilerplate.
 
 ## Make sure you have the server running first, see how [here](https://github.com/retakeio/partgr-server)
 * clone the repo
